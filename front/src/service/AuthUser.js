@@ -1,16 +1,25 @@
 import axios from 'axios';
 
-const createUser = async (name, email, password) => {
-  return await axios.post('users', {
-    name,
-    email,
-    password,
-  });
+const base = "http://localhost:8080"
+
+const createUser = async (nickname, email, password) => {
+  const formData = new FormData();
+  formData.append('nickname', nickname);
+  formData.append('email', email);
+  formData.append('password', password);
+
+  return await axios.post(base+'/api/signup', formData)
+  .then(
+    console.log('nickname: ' + nickname),
+    console.log('email: ' + email),
+    console.log('password: ' + password)
+  );
 };
 
+/*
 const createUserAuthTokenJwt = async (email, password) => {
   return await axios
-    .post('auth/jwt', {
+    .post(base+"/api/signup", {
       email,
       password,
     })
@@ -20,6 +29,7 @@ const createUserAuthTokenJwt = async (email, password) => {
       }
     });
 };
+*/
 
 const removeUserAuthTokenJwt = () => {
   localStorage.removeItem('token');
@@ -31,7 +41,7 @@ const getUserAuthToken = () => {
 
 export default {
   createUser,
-  createUserAuthTokenJwt,
+  /*createUserAuthTokenJwt,*/
   removeUserAuthTokenJwt,
   getUserAuthToken,
 };

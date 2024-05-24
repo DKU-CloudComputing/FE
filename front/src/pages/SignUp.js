@@ -20,16 +20,15 @@ function SignUp() {
     }
 
     // create user
-    AuthUser.createUser(
-      event.target.name.value,
-      event.target.email.value,
-      event.target.password.value
-    ).then(
+    AuthUser.createUser(event.target.name.value, event.target.email.value, event.target.password.value)
+    .then(
       () => {
+        console.log("회원가입 성공");
         navigate('/');
         window.location.reload();
       },
       (error) => {
+        console.log("회원가입 실패");
         const resMessage =
           error.response && error.response.data && error.response.data.message;
         const errMessage = error.message || error.toString();
