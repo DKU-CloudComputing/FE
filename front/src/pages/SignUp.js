@@ -53,7 +53,7 @@ function SignUp() {
                   minLength={3}
                   maxLength={20}
                   required
-                  defaultValue={'홍길동'}
+                  //defaultValue={'testUser'}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -62,7 +62,7 @@ function SignUp() {
                   type="email"
                   name="email"
                   required
-                  defaultValue={'test1234@resumer.com'}
+                  //defaultValue={'test1234@gmail.com'}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -73,7 +73,7 @@ function SignUp() {
                   minLength={3}
                   maxLength={20}
                   required
-                  defaultValue={'test1234'}
+                  //defaultValue={'test1234'}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
@@ -84,7 +84,7 @@ function SignUp() {
                   minLength={3}
                   maxLength={20}
                   required
-                  defaultValue={'test1234'}
+                  //defaultValue={'test1234'}
                 />
               </Form.Group>
               <div className="d-grid mt-5">

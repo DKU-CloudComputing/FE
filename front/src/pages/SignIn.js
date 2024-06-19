@@ -19,8 +19,8 @@ function SignIn() {
       return;
     }
 
-    // create token
-    AuthUser.createUserAuthTokenJwt(
+    // create session
+    AuthUser.createUserSession(
       event.target.email.value,
       event.target.password.value
     ).then(
@@ -50,19 +50,16 @@ function SignIn() {
                 type="email"
                 name="email"
                 required
-                defaultValue={'test1234@resumer.com'}
+                //defaultValue={'test1234@gmail.com'}
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className="text-muted">Password</Form.Label>
-              <Form.Text className="float-end">
-                <Link to="/forgotpass">비밀번호를 잊으셨나요?</Link>
-              </Form.Text>
               <Form.Control
                 type="password"
                 name="password"
                 required
-                defaultValue={'test1234'}
+                //defaultValue={'test1234'}
               />
             </Form.Group>
             <div className="d-grid mt-5">

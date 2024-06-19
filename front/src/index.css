@@ -11,3 +11,157 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 56px; /* 네비게이션 바의 높이를 고려한 패딩 */
+}
+
+.chat-screen {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 56px); /* 네비게이션 바의 높이를 제외한 높이 */
+}
+
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.message {
+  margin: 10px 0;
+}
+
+.message.user {
+  text-align: right;
+}
+
+.message.bot {
+  text-align: left;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: #f0f0f0;
+  border-top: 1px solid #ddd;
+}
+
+.input-form input[type="text"],
+.input-form input[type="file"] {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.size-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.size-inputs label {
+  margin-bottom: 10px;
+}
+
+.size-inputs select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.input-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-form button:hover {
+  background-color: #0056b3;
+}
+
+/* DashBoard.css */
+.dashboard-container {
+  padding: 76px 20px 20px; /* 네비게이션 바의 높이를 고려한 상단 패딩 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  height: calc(100vh - 56px); /* 네비게이션 바의 높이를 제외한 높이 */
+  overflow-y: auto;
+}
+
+.image-card {
+  width: 300px; /* 카드의 너비를 지정 */
+  margin: 10px; /* 이미지 카드 간의 간격 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.image-card:hover {
+  transform: translateY(-5px);
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-card p {
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.download-button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #cf1836ca;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #910018d7;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}

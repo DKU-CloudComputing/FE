@@ -1,6 +1,7 @@
-import axios from 'axios';
 
-const base = "http://localhost:8080"
+import axios from 'axios';
+ 
+const base = process.env.REACT_APP_LOGIN_BASE;
 
 const createUser = async (nickname, email, password) => {
   const formData = new FormData();
@@ -9,39 +10,75 @@ const createUser = async (nickname, email, password) => {
   formData.append('password', password);
 
   return await axios.post(base+'/api/signup', formData)
-  .then(
-    console.log('nickname: ' + nickname),
-    console.log('email: ' + email),
-    console.log('password: ' + password)
+  .then( (response) => {
+    console.log('nickname: ' + nickname);
+    console.log('email: ' + email);
+    console.log('password: ' + password);
+    localStorage.setItem('userId', response.data.id);
+  }
   );
 };
 
-/*
-const createUserAuthTokenJwt = async (email, password) => {
+const editUser = async (nickname, email, password) => {
+  const formData = new FormData();
+  formData.append('userId', localStorage.getItem('userId'));
+  formData.append('nickname', nickname);
+  formData.append('email', email);
+  formData.append('password', password);
+
+  return await axios.post(base+'/api/user/edit', formData)
+  .then( (response) => {
+    console.log('nickname: ' + nickname);
+    console.log('email: ' + email);
+    console.log('password: ' + password);
+    localStorage.setItem('userId', response.data.id);
+  }
+  );
+};
+
+
+const createUserSession = async (email, password) => {
+
+  const formData = new FormData();
+  formData.append('email', email);
+  formData.append('password', password);
+
   return await axios
-    .post(base+"/api/signup", {
-      email,
-      password,
-    })
+    .post(base+"/api/login", formData)
     .then((response) => {
-      if (response.data && response.data.token) {
-        localStorage.setItem('token', response.data.token);
+      const sessionId = response.data.jsessionId;
+      if (sessionId) {
+        localStorage.setItem('sessionId', sessionId);
+        localStorage.setItem('userId', response.data.authentication.principal.id);
+        console.log('로그인 성공');
+      } else {
+        console.log('jsessionId 정보가 없습니다.');
       }
+    })
+    .catch(error => {
+      console.log('로그인 실패');
     });
 };
-*/
 
-const removeUserAuthTokenJwt = () => {
-  localStorage.removeItem('token');
+const removeUserSessionId = () => {
+  localStorage.removeItem('sessionId');
+  localStorage.removeItem('userId');
 };
 
-const getUserAuthToken = () => {
-  return localStorage.getItem('token');
+const getUserSessionId = () => {
+  if ('sessionId' in localStorage) {
+    return localStorage.getItem('sessionId');
+  }
+  else{
+    return false;
+  }
 };
 
+// eslint-disable-next-line
 export default {
   createUser,
-  /*createUserAuthTokenJwt,*/
-  removeUserAuthTokenJwt,
-  getUserAuthToken,
+  editUser,
+  createUserSession,
+  removeUserSessionId,
+  getUserSessionId,
 };

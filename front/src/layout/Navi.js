@@ -1,16 +1,17 @@
+import React from 'react';
 import AuthUser from '../service/AuthUser';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 function Navi() {
   const logOut = () => {
-    AuthUser.removeUserAuthTokenJwt();
+    AuthUser.removeUserSessionId();
     window.location.reload();
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <Container>
-        <Navbar.Brand href="/">Resumer</Navbar.Brand>
+        <Navbar.Brand href="/">Imaginairy</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">

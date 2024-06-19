@@ -5,37 +5,41 @@ import Navi from './layout/Navi';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import ForgotPass from './pages/ForgotPass';
 import NotFound from './pages/NotFound';
-
+import EditProfile from './pages/EditProfile';
+import DashBoard from './pages/DashBoard';
 function App() {
-  const [hasToken, setHasToken] = useState(false);
+  const [hasSession, setHasSession] = useState(false);
   useEffect(() => {
-    const token = AuthUser.getUserAuthToken();
-    if (token) {
-      setHasToken(true);
+    const sessionId = AuthUser.getUserSessionId();
+    if (sessionId) {
+      setHasSession(true);
     }
   }, []);
 
   return (
     <BrowserRouter>
-      {hasToken ? <Navi /> : null}
+      {hasSession ? <Navi /> : null}
       <Routes>
         <Route
           path="/"
-          element={hasToken ? <Home /> : <Navigate to="/signin" />}
+          element={hasSession ? <Home /> : <Navigate to="/signin" />}
         />
         <Route
           path="/signin"
-          element={hasToken ? <Navigate to="/" /> : <SignIn />}
+          element={hasSession ? <Navigate to="/" /> : <SignIn />}
         />
         <Route
           path="/signup"
-          element={hasToken ? <Navigate to="/" /> : <SignUp />}
+          element={hasSession ? <Navigate to="/" /> : <SignUp />}
         />
         <Route
-          path="/forgotpass"
-          element={hasToken ? <Navigate to="/" /> : <ForgotPass />}
+          path="/dashboard"
+          element={hasSession ? <DashBoard /> : <SignIn />}
+        />
+        <Route
+          path="/profile"
+          element={hasSession ? <EditProfile /> : <SignIn />}
         />
         <Route path="/*" element={<NotFound />} />
       </Routes>
